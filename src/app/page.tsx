@@ -83,6 +83,22 @@ export default function Home() {
           />
         </div>
       </section>
+      <section className={styles.welcome} id="welcome">
+        <Image
+          src='/images/welcome.png'
+          alt="Welcome to 113 Stand"
+          width={500}
+          height={100}
+          className={styles.welcomeImage}
+        />
+        <div className={styles.welcomeText}>
+          <h2 className={styles.welcomeTitle}>Welcome to 113 Stand</h2>
+          <div className={styles.welcomeDescription}>
+            <p>We are excited to have you here!</p>
+            <p>Join us for a meal and experience the best of 113 Stand.</p>
+          </div>
+        </div>
+      </section>
       <footer className={styles.footer}>
         <div className={styles.footerText}>
           <p>&copy; 2023 113 Stand. All rights reserved.</p>

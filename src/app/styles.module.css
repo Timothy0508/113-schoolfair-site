@@ -164,3 +164,44 @@
   width: 100%;
   height: 100px;
 }
+
+.welcome {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  width: 100%;
+}
+
+.welcomeImage {
+  width: 50vw;
+  height: 500px;
+  object-fit: cover;
+  background-size: cover;
+  background-position: center;
+}
+
+.welcomeText {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50vw;
+  padding: 20px;
+}
+
+.welcomeTitle {
+  font-size: 2em;
+  color: white;
+}
+
+.welcomeDescription {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2em;
+  color: white;
+  margin-top: 20px;
+}
