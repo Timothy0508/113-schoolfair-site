@@ -1,5 +1,6 @@
 import Image from "next/image";
 import styles from "./styles.module.css";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -10,10 +11,10 @@ export default function Home() {
           113 Stand
         </h1>
         <div className={styles.actions}>
-          <a href="#about">About</a>
-          <a href="#menu">Menu</a>
-          <a href="#welcome">Welcome</a>
-          <a href="#contact">Contact</a>
+          <Link href="#about">About</Link>
+          <Link href="#menu">Menu</Link>
+          <Link href="#welcome">Welcome</Link>
+          <Link href="#contact">Contact</Link>
         </div>
       </header>
       <section className={styles.welcome} id="welcome">
