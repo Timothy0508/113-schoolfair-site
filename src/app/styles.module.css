@@ -136,7 +136,7 @@
 .menuItem {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: start;
   align-items: start;
   padding: 20px;
   width: 100%;

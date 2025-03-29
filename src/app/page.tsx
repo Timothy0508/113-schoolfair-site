@@ -70,22 +70,26 @@ export default function Home() {
         <h2 className={styles.menuTitle}>Our Menu</h2>
         <div className={styles.menuItems}>
           <MenuItem
-            title="Grilled Chicken"
+            title="飲料"
             description="Juicy grilled chicken served with a side of vegetables."
           />
           <MenuItem
-            title="Vegetable Salad"
+            title="冰品"
             description="Fresh salad made with seasonal vegetables."
           />
           <MenuItem
-            title="Chocolate Cake"
+            title="炒泡麵"
             description="Delicious chocolate cake topped with whipped cream."
+          />
+          <MenuItem
+            title="脆薯"
+            description="Spicy fried rice with vegetables and chicken."
           />
         </div>
       </section>
       <footer className={styles.footer}>
         <div className={styles.footerText}>
-          <p>&copy; 2023 113 Stand. All rights reserved.</p>
+          <p>&copy; 2025 113 Stand. All rights reserved.</p>
         </div>
       </footer>
     </main>
