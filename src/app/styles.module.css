@@ -32,7 +32,7 @@
   width: 20%;
 }
 
-.welcomeImage {
+.introImage {
   width: 500px;
   height: auto;
   object-fit: cover;
@@ -40,17 +40,17 @@
   background-position: center;
 }
 
-.welcomeText {
+.introText {
   display: flex;
   flex-direction: column;
 }
 
-.welcomeTitle {
+.introTitle {
   font-size: 3em;
   color: white;
 }
 
-.welcome {
+.intro {
   display: flex;
   position: relative;
   flex-direction: row;
@@ -59,7 +59,7 @@
   align-items: center;
 }
 
-.welcomeButton {
+.introButton {
   margin-top: 20px;
   cursor: pointer;
   border: white 2px solid;
@@ -73,17 +73,17 @@
   align-items: center;
 }
 
-.welcomeButton:hover {
+.introButton:hover {
   background-color: white;
   color: black;
 }
 
-.welcomeLink {
+.introLink {
   text-decoration: none;
   width: min-content;
 }
 
-.welcomeButtonIcon {
+.introButtonIcon {
   margin-left: 10px;
   width: 20px;
   height: 20px;

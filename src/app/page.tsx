@@ -28,17 +28,17 @@ export default function Home() {
           <Link href="#contact">Contact</Link>
         </div>
       </header>
-      <section className={styles.welcome} id="welcome">
-        <div className={styles.welcomeText}>
-          <h2 className={styles.welcomeTitle}>Welcome to 113 Stand</h2>
-          <div className={styles.welcomeDescription}>
+      <section className={styles.intro} id="intro">
+        <div className={styles.introText}>
+          <h2 className={styles.introTitle}>Welcome to 113 Stand</h2>
+          <div className={styles.introDescription}>
             <p>113 Stand is a place where you can enjoy delicious food and drinks.</p>
             <p>We offer a wide variety of dishes made with fresh ingredients.</p>
           </div>
-          <Link href="#menu" className={styles.welcomeLink}>
-            <button className={styles.welcomeButton}>
+          <Link href="#menu" className={styles.introLink}>
+            <button className={styles.introButton}>
               View Menu
-              <FontAwesomeIcon icon={faArrowRight} fixedWidth className={styles.welcomeButtonIcon} />
+              <FontAwesomeIcon icon={faArrowRight} fixedWidth className={styles.introButtonIcon} />
             </button>
           </Link>
         </div>
@@ -47,7 +47,7 @@ export default function Home() {
           alt="Welcome to 113 Stand"
           width={500}
           height={100}
-          className={styles.welcomeImage}
+          className={styles.introImage}
         />
       </section>
       <section className={styles.about} id="about">
@@ -81,15 +81,11 @@ export default function Home() {
             title="炒泡麵"
             description="Delicious chocolate cake topped with whipped cream."
           />
-          <MenuItem
-            title="脆薯"
-            description="Spicy fried rice with vegetables and chicken."
-          />
         </div>
       </section>
       <footer className={styles.footer}>
         <div className={styles.footerText}>
-          <p>&copy; 2025 113 Stand. All rights reserved.</p>
+          <p>&copy; 2023 113 Stand. All rights reserved.</p>
         </div>
       </footer>
     </main>
