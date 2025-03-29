@@ -1,6 +1,8 @@
 import Image from "next/image";
 import styles from "./styles.module.css";
 import Link from "next/link";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 export default function Home() {
   return (
@@ -20,8 +22,16 @@ export default function Home() {
       <section className={styles.welcome} id="welcome">
         <div className={styles.welcomeText}>
           <h2 className={styles.welcomeTitle}>Welcome to 113 Stand</h2>
-          <p>113 Stand is a place where you can enjoy delicious food and drinks.</p>
-          <p>We offer a wide variety of dishes made with fresh ingredients.</p>
+          <div className={styles.welcomeDescription}>
+            <p>113 Stand is a place where you can enjoy delicious food and drinks.</p>
+            <p>We offer a wide variety of dishes made with fresh ingredients.</p>
+          </div>
+          <Link href="#menu" className={styles.welcomeLink}>
+            <button className={styles.welcomeButton}>
+              View Menu
+              <FontAwesomeIcon icon={faArrowRight} fixedWidth className={styles.welcomeButtonIcon} />
+            </button>
+          </Link>
         </div>
         <Image
           src='/images/welcome.svg'
@@ -30,6 +40,13 @@ export default function Home() {
           height={100}
           className={styles.welcomeImage}
         />
+      </section>
+      <section className={styles.about} id="about">
+        <h2 className={styles.aboutTitle}>About Us</h2>
+        <div className={styles.aboutDescription}>
+          <p>At 113 Stand, we believe in serving quality food that brings people together.</p>
+          <p>Our team is dedicated to providing you with the best dining experience possible.</p>
+        </div>
       </section>
       <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
 
