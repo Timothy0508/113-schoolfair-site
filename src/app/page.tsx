@@ -131,7 +131,7 @@ export default function Home() {
       </section>
       <footer className={styles.footer}>
         <div className={styles.footerText}>
-          <p>&copy; 2023 113 Stand. All rights reserved.</p>
+          <p>&copy; 2025 113 Stand. All rights reserved.</p>
         </div>
       </footer>
     </main>

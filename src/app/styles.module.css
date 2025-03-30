@@ -21,7 +21,6 @@
 }
 
 .title {
-  color: white;
   font-size: 2em;
 }
 
@@ -48,7 +47,6 @@
 
 .introTitle {
   font-size: 3em;
-  color: white;
 }
 
 .intro {
@@ -63,7 +61,7 @@
 .introButton {
   margin-top: 20px;
   cursor: pointer;
-  border: white 2px solid;
+  border: 2px solid;
   border-radius: 25px;
   height: 50px;
   width: 150px;
@@ -108,7 +106,6 @@
 
 .aboutTitle {
   font-size: 2em;
-  color: white;
 }
 
 .menu {
@@ -131,7 +128,6 @@
 
 .menuTitle {
   font-size: 2em;
-  color: white;
 }
 
 .menuItem {
@@ -141,7 +137,7 @@
   align-items: start;
   padding: 20px;
   width: 100%;
-  border: #fff 2px solid;
+  border: 2px solid;
   border-radius: 25px;
   transition-duration: 0.4s;
 }
@@ -153,7 +149,6 @@
 
 .menuItemTitle {
   font-size: 1.5em;
-  color: white;
 }
 
 .footer {
@@ -194,7 +189,6 @@
 
 .welcomeTitle {
   font-size: 2em;
-  color: white;
 }
 
 .welcomeDescription {
@@ -203,7 +197,6 @@
   justify-content: center;
   align-items: center;
   font-size: 1.2em;
-  color: white;
   margin-top: 20px;
 }
 
@@ -218,7 +211,6 @@
 
 .contactTitle {
   font-size: 2em;
-  color: white;
 }
 
 .contactItem {
@@ -229,7 +221,7 @@
 
 .contactButton {
   cursor: pointer;
-  border: white 2px solid;
+  border: 2px solid;
   border-radius: 25px;
   height: 50px;
   width: 175px;
@@ -263,14 +255,13 @@
   justify-content: space-evenly;
   align-items: center;
   font-size: 1em;
-  color: white;
   margin-top: 20px;
   width: 100%;
 }
 
 .contactButtonTreads {
   cursor: pointer;
-  border: white 2px solid;
+  border: 2px solid;
   border-radius: 25px;
   height: 50px;
   width: 175px;
