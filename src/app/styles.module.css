@@ -3,6 +3,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  overflow-x: hidden;
 }
 
 .header {
@@ -12,7 +13,7 @@
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
-  display: sticky;
+  position: sticky;
   top: 0;
   left: 0;
   vertical-align: middle;
@@ -293,4 +294,74 @@
   color: white;
 }
 
-@media (max-width) {}
+/* Media queries for responsive design */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .actions {
+    margin-top: 10px;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .intro,
+  .about,
+  .welcome {
+    flex-direction: column;
+  }
+
+  .intro {
+    text-align: center;
+  }
+
+  .introText,
+  .aboutText {
+    padding: 10px;
+    align-items: center;
+    text-align: center;
+  }
+
+  .introTitle {
+    font-size: 2em;
+  }
+
+  .welcomeImage,
+  .welcomeText {
+    width: 100%;
+  }
+
+  .welcomeText {
+    padding: 15px;
+  }
+
+  .contactInfo {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 1.5em;
+  }
+
+  .actions {
+    gap: 5px;
+    font-size: 0.9em;
+  }
+
+  .menuItems {
+    grid-template-columns: 1fr;
+  }
+
+  .introTitle,
+  .aboutTitle,
+  .menuTitle,
+  .welcomeTitle,
+  .contactTitle {
+    font-size: 1.8em;
+  }
+}

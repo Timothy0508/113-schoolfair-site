@@ -35,12 +35,12 @@ export default function Home() {
         <h1 className={styles.title}>
           113 Stand
         </h1>
-        <div className={styles.actions}>
+        <nav className={styles.actions}>
           <Link href="#about">About</Link>
           <Link href="#menu">Menu</Link>
           <Link href="#welcome">Welcome</Link>
           <Link href="#contact">Contact</Link>
-        </div>
+        </nav>
       </header>
       <section className={styles.intro} id="intro">
         <div className={styles.introText}>
@@ -62,6 +62,7 @@ export default function Home() {
           width={500}
           height={100}
           className={styles.introImage}
+          priority
         />
       </section>
       <section className={styles.about} id="about">
