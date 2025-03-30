@@ -1,3 +1,5 @@
+'use client'
+
 import Image from "next/image";
 import styles from "./styles.module.css";
 import Link from "next/link";
@@ -5,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { faInstagram, faThreads } from "@fortawesome/free-brands-svg-icons";
+import { useEffect } from "react";
 
 export function MenuItem({ title, description, price }: { title: string; description: string; price: number }) {
   return (
@@ -28,6 +31,24 @@ export function ContactButton({ icon, text, href }: { icon: IconProp; text: stri
 }
 
 export default function Home() {
+  useEffect(() => {
+    const header = document.querySelector(`.${styles.header}`);
+    const scrollHandler = () => {
+      if (window.scrollY > 50) {
+        header.classList.add(styles.scrolled);
+      } else {
+        header.classList.remove(styles.scrolled);
+      }
+    };
+
+    window.addEventListener('scroll', scrollHandler);
+
+    // Clean up event listener
+    return () => {
+      window.removeEventListener('scroll', scrollHandler);
+    };
+  }, []);
+
   return (
 
     <main className={styles.main}>
