@@ -6,28 +6,16 @@ import styles from "./styles.module.css";
 import Link from "next/link";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
-import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { faInstagram, faThreads } from "@fortawesome/free-brands-svg-icons";
 import { useEffect } from "react";
 
-export function MenuItem({ title, description, price }: { title: string; description: string; price: number }) {
+function MenuItem({ title, description, price }: { title: string; description: string; price: number }) {
   return (
     <div className={styles.menuItem}>
       <h3 className={styles.menuItemTitle}>{title}</h3>
       <p className={styles.menuItemDescription}>{description}</p>
       <p className={styles.menuItemPrice}>${price}</p>
     </div>
-  );
-}
-
-export function ContactButton({ icon, text, href }: { icon: IconProp; text: string; href: string }) {
-  return (
-    <a href={href} className={styles.contactItem}>
-      <button className={styles.contactButton}>
-        <FontAwesomeIcon icon={icon} fixedWidth className={styles.contactIcon} />
-        <span className={styles.contactText}>{text}</span>
-      </button>
-    </a>
   );
 }
 
