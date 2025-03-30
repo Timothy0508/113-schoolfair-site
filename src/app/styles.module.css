@@ -376,6 +376,10 @@
     padding-left: 0;
   }
 
+  .intro {
+    flex-direction: column-reverse;
+  }
+
   .introTitle,
   .aboutTitle,
   .menuTitle,
