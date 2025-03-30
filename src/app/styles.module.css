@@ -40,9 +40,10 @@
 .actions {
   display: flex;
   flex-direction: row;
-  gap: 10px;
+  gap: 20px;
   justify-content: space-evenly;
   width: max-content;
+  padding-right: 20px;
 }
 
 .introImage {
@@ -364,10 +365,15 @@
   .actions {
     gap: 5px;
     font-size: 0.9em;
+    padding-right: 0px;
   }
 
   .menuItems {
     grid-template-columns: 1fr;
+  }
+
+  .aboutText {
+    padding-left: 0;
   }
 
   .introTitle,
