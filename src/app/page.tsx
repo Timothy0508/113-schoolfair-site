@@ -21,7 +21,8 @@ function MenuItem({ title, description, price }: { title: string; description: s
 
 export default function Home() {
   useEffect(() => {
-    const header = document.querySelector(`.${styles.header}`);
+    const header = document.querySelector(`.${styles.header}`) as HTMLElement | null;
+    if (!header) return; // Safety check
     const scrollHandler = () => {
       if (window.scrollY > 50) {
         header.classList.add(styles.scrolled);
