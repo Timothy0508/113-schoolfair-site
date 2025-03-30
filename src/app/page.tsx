@@ -3,6 +3,8 @@ import styles from "./styles.module.css";
 import Link from "next/link";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
+import { faInstagram, faThreads } from "@fortawesome/free-brands-svg-icons";
 
 export function MenuItem({ title, description }: { title: string; description: string }) {
   return (
@@ -10,6 +12,17 @@ export function MenuItem({ title, description }: { title: string; description: s
       <h3 className={styles.menuItemTitle}>{title}</h3>
       <p className={styles.menuItemDescription}>{description}</p>
     </div>
+  );
+}
+
+export function ContactButton({ icon, text, href }: { icon: IconProp; text: string; href: string }) {
+  return (
+    <a href={href} className={styles.contactItem}>
+      <button className={styles.contactButton}>
+        <FontAwesomeIcon icon={icon} fixedWidth className={styles.contactIcon} />
+        <span className={styles.contactText}>{text}</span>
+      </button>
+    </a>
   );
 }
 
@@ -97,6 +110,23 @@ export default function Home() {
             <p>We are excited to have you here!</p>
             <p>Join us for a meal and experience the best of 113 Stand.</p>
           </div>
+        </div>
+      </section>
+      <section className={styles.contact} id="contact">
+        <h2 className={styles.contactTitle}>Contact Us</h2>
+        <div className={styles.contactInfo}>
+          <a href='https://www.instagram.com/tcfsh113_13/' className={styles.contactItem}>
+            <button className={styles.contactButton}>
+              <FontAwesomeIcon icon={faInstagram} fixedWidth className={styles.contactIcon} />
+              <span className={styles.contactText}>@tcfsh113_13</span>
+            </button>
+          </a>
+          <a href="https://www.threads.net/@tcfsh113_13" className={styles.contactItem}>
+            <button className={styles.contactButtonTreads}>
+              <FontAwesomeIcon icon={faThreads} fixedWidth className={styles.contactIcon} />
+              <span className={styles.contactText}>@tcfsh113_13</span>
+            </button>
+          </a>
         </div>
       </section>
       <footer className={styles.footer}>
