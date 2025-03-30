@@ -6,11 +6,12 @@ import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { faInstagram, faThreads } from "@fortawesome/free-brands-svg-icons";
 
-export function MenuItem({ title, description }: { title: string; description: string }) {
+export function MenuItem({ title, description, price }: { title: string; description: string; price: number }) {
   return (
     <div className={styles.menuItem}>
       <h3 className={styles.menuItemTitle}>{title}</h3>
       <p className={styles.menuItemDescription}>{description}</p>
+      <p className={styles.menuItemPrice}>${price}</p>
     </div>
   );
 }
@@ -85,14 +86,22 @@ export default function Home() {
           <MenuItem
             title="飲料"
             description="Juicy grilled chicken served with a side of vegetables."
+            price={10}
           />
           <MenuItem
             title="冰品"
             description="Fresh salad made with seasonal vegetables."
+            price={20}
           />
           <MenuItem
             title="炒泡麵"
             description="Delicious chocolate cake topped with whipped cream."
+            price={30}
+          />
+          <MenuItem
+            title="脆薯"
+            description="Franch Fries"
+            price={40}
           />
         </div>
       </section>

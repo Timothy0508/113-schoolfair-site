@@ -133,7 +133,7 @@
 .menuItem {
   display: flex;
   flex-direction: column;
-  justify-content: start;
+  justify-content: space-between;
   align-items: start;
   padding: 20px;
   width: 100%;
@@ -149,6 +149,11 @@
 
 .menuItemTitle {
   font-size: 1.5em;
+}
+
+.menuItemPrice {
+  font-size: 1.1em;
+  color: green;
 }
 
 .footer {
