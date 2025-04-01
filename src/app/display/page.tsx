@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "./styles.module.css";
 
-const API_URL = 'http://127.0.0.1:7000';
+const API_URL = 'https://my-call-queue-worker.timothytseng508.workers.dev';
 const request = axios.create({ baseURL: API_URL });
 
 export default function DisplayPage() {
