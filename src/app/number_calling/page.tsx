@@ -5,30 +5,39 @@ import axios from "axios";
 import styles from "./styles.module.css";
 
 const API_URL = 'http://127.0.0.1:7000';
-const request = axios.create({ baseURL: API_URL });
+const request = axios.create({
+    baseURL: API_URL,
+    timeout: 5000 // Add timeout to prevent long waiting
+});
 
 export default function NumberCallingPage() {
     const [currentNumber, setCurrentNumber] = useState<number | null>(null);
     const [queue, setQueue] = useState<number[]>([]);
     const [queueLength, setQueueLength] = useState<number>(0);
     const [error, setError] = useState<string | null>(null);
+    const [loading, setLoading] = useState<boolean>(true);
+    const [connectionStatus, setConnectionStatus] = useState<'connected' | 'disconnected'>('disconnected');
 
     // Fetch current number, queue, and queue length
     const fetchData = async () => {
-        try {
-            // Try to get current number
-            const currentResponse = await request.get("/current");
-            setCurrentNumber(currentResponse.data.current_number);
-            setError(null);
-        } catch (err) {
-            if (axios.isAxiosError(err) && err.response?.status === 404) {
-                setCurrentNumber(null);
-            } else {
-                setError("無法連接到服務器");
-            }
-        }
+        setLoading(true);
 
         try {
+            // Try to get current number
+            try {
+                const currentResponse = await request.get("/current");
+                setCurrentNumber(currentResponse.data.current_number);
+                setConnectionStatus('connected');
+            } catch (err) {
+                if (axios.isAxiosError(err) && err.response?.status === 404) {
+                    // Not an error, just no current number
+                    setCurrentNumber(null);
+                    setConnectionStatus('connected');
+                } else {
+                    throw err; // Re-throw for the outer catch to handle
+                }
+            }
+
             // Get queue
             const queueResponse = await request.get("/queue");
             setQueue(queueResponse.data.queue);
@@ -36,22 +45,28 @@ export default function NumberCallingPage() {
             // Get queue length
             const lengthResponse = await request.get("/queue/length");
             setQueueLength(lengthResponse.data.length);
+
+            setError(null);
         } catch (err) {
-            setError("無法連接到服務器");
+            setConnectionStatus('disconnected');
+            console.error("API connection error:", err);
+            setError("無法連接到服務器，請確保API服務正在運行並且可訪問");
+        } finally {
+            setLoading(false);
         }
     };
 
     // Call next number
     const handleDequeue = async () => {
         try {
-            const response = await request.post("/dequeue");
-            setCurrentNumber(response.data.current_number);
+            await request.post("/dequeue");
             fetchData(); // Refresh data after dequeue
         } catch (err) {
             if (axios.isAxiosError(err) && err.response?.status === 404) {
                 setError("目前隊列中沒有人");
             } else {
-                setError("無法連接到服務器");
+                console.error("Dequeue error:", err);
+                setError("叫號失敗，請重試");
             }
         }
     };
@@ -62,7 +77,8 @@ export default function NumberCallingPage() {
             await request.post("/queue");
             fetchData(); // Refresh data after enqueue
         } catch (err) {
-            setError("無法連接到服務器");
+            console.error("Enqueue error:", err);
+            setError("無法添加新號碼，請重試");
         }
     };
 
@@ -81,28 +97,59 @@ export default function NumberCallingPage() {
         <div className={styles.container}>
             <h1 className={styles.title}>叫號系統</h1>
 
+            <div className={`${styles.statusIndicator} ${connectionStatus === 'connected' ? styles.connected : styles.disconnected}`}>
+                {connectionStatus === 'connected' ? '已連接到服務器' : '未連接到服務器'}
+            </div>
+
             {error && <div className={styles.error}>{error}</div>}
 
             <div className={styles.currentNumberContainer}>
                 <h2 className={styles.sectionTitle}>目前叫號</h2>
                 <div className={styles.currentNumberDisplay}>
-                    {currentNumber ? currentNumber : "無"}
+                    {loading ? (
+                        <span className={styles.loading}>載入中...</span>
+                    ) : (
+                        currentNumber !== null ? currentNumber : "無"
+                    )}
                 </div>
             </div>
 
             <div className={styles.queueInfoContainer}>
                 <h2 className={styles.sectionTitle}>隊列資訊</h2>
                 <div className={styles.queueInfo}>
-                    <p>目前隊列中共有: <span className={styles.count}>{queueLength}</span> 位</p>
-                    <p>等待號碼: {queue.length > 0 ? queue.join(", ") : "無"}</p>
+                    {loading ? (
+                        <p className={styles.loading}>載入中...</p>
+                    ) : (
+                        <>
+                            <p>目前隊列中共有: <span className={styles.count}>{queueLength}</span> 位</p>
+                            <p>等待號碼: {queue.length > 0 ? queue.join(", ") : "無"}</p>
+                        </>
+                    )}
                 </div>
             </div>
 
+            <div className={styles.troubleshooting}>
+                <h3>連接問題？</h3>
+                <ul>
+                    <li>確保API服務正在運行 (http://127.0.0.1:7000)</li>
+                    <li>檢查API服務是否已啟用CORS</li>
+                    <li>嘗試刷新頁面或重啟服務</li>
+                </ul>
+            </div>
+
             <div className={styles.controls}>
-                <button onClick={handleDequeue} className={styles.callButton}>
+                <button
+                    onClick={handleDequeue}
+                    className={styles.callButton}
+                    disabled={connectionStatus === 'disconnected'}
+                >
                     叫下一號
                 </button>
-                <button onClick={handleEnqueue} className={styles.addButton}>
+                <button
+                    onClick={handleEnqueue}
+                    className={styles.addButton}
+                    disabled={connectionStatus === 'disconnected'}
+                >
                     加入新號碼
                 </button>
             </div>

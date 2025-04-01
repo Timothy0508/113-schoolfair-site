@@ -10,8 +10,26 @@
 
 .title {
     font-size: 2.5rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     text-align: center;
+}
+
+.statusIndicator {
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    margin-bottom: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.connected {
+    background-color: #d1fae5;
+    color: #047857;
+}
+
+.disconnected {
+    background-color: #fee2e2;
+    color: #b91c1c;
 }
 
 .error {
@@ -46,6 +64,10 @@
     margin: 1rem 0;
     min-width: 200px;
     text-align: center;
+    min-height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .queueInfoContainer {
@@ -69,10 +91,35 @@
     font-size: 1.4rem;
 }
 
+.loading {
+    opacity: 0;
+    font-style: italic;
+}
+
+.troubleshooting {
+    background-color: #f3f4f6;
+    color: #4b5563;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin: 1rem 0 2rem;
+    width: 100%;
+}
+
+.troubleshooting h3 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.troubleshooting ul {
+    margin: 0;
+    padding-left: 1.5rem;
+}
+
 .controls {
     display: flex;
     gap: 1rem;
-    margin-top: 2rem;
+    margin-top: 1rem;
 }
 
 .callButton,
@@ -90,7 +137,7 @@
     color: white;
 }
 
-.callButton:hover {
+.callButton:hover:not(:disabled) {
     background-color: #1d4ed8;
 }
 
@@ -99,8 +146,15 @@
     color: white;
 }
 
-.addButton:hover {
+.addButton:hover:not(:disabled) {
     background-color: #059669;
+}
+
+.callButton:disabled,
+.addButton:disabled {
+    background-color: #9ca3af;
+    cursor: not-allowed;
+    opacity: 0.7;
 }
 
 /* Responsive styles */
