@@ -1,0 +1,137 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    min-height: 100vh;
+}
+
+.title {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.error {
+    background-color: #ffdddd;
+    color: #d8000c;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    border-radius: 0.5rem;
+    width: 100%;
+    text-align: center;
+}
+
+.currentNumberContainer {
+    width: 100%;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sectionTitle {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.currentNumberDisplay {
+    font-size: 5rem;
+    font-weight: bold;
+    padding: 1rem 3rem;
+    border: 3px solid var(--foreground);
+    border-radius: 1rem;
+    margin: 1rem 0;
+    min-width: 200px;
+    text-align: center;
+}
+
+.queueInfoContainer {
+    width: 100%;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.queueInfo {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid var(--foreground);
+    border-radius: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.count {
+    font-weight: bold;
+    font-size: 1.4rem;
+}
+
+.controls {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.callButton,
+.addButton {
+    padding: 0.75rem 1.5rem;
+    font-size: 1.1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.callButton {
+    background-color: #2563eb;
+    color: white;
+}
+
+.callButton:hover {
+    background-color: #1d4ed8;
+}
+
+.addButton {
+    background-color: #10b981;
+    color: white;
+}
+
+.addButton:hover {
+    background-color: #059669;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+
+    .title {
+        font-size: 2rem;
+    }
+
+    .currentNumberDisplay {
+        font-size: 4rem;
+        padding: 0.75rem 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .controls {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .callButton,
+    .addButton {
+        width: 100%;
+    }
+
+    .currentNumberDisplay {
+        font-size: 3rem;
+        padding: 0.5rem 1.5rem;
+    }
+}

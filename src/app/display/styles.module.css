@@ -1,0 +1,102 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 1rem;
+    background-color: var(--background);
+}
+
+.displayBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--background);
+    border: 4px solid var(--foreground);
+    border-radius: 1rem;
+    padding: 2rem;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.displayTitle {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.numberDisplay {
+    font-size: 8rem;
+    font-weight: bold;
+    line-height: 1;
+    padding: 1rem;
+    text-align: center;
+    min-height: 10rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.error {
+    background-color: #ffdddd;
+    color: #d8000c;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    max-width: 100%;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.footer {
+    margin-top: 2rem;
+    text-align: center;
+    font-size: 1.2rem;
+    opacity: 0.8;
+}
+
+/* Animation for number changes */
+@keyframes numberChange {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.numberDisplay {
+    animation: numberChange 0.5s ease-out;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .displayTitle {
+        font-size: 2rem;
+    }
+
+    .numberDisplay {
+        font-size: 6rem;
+        min-height: 8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .displayBox {
+        padding: 1.5rem;
+    }
+
+    .displayTitle {
+        font-size: 1.5rem;
+    }
+
+    .numberDisplay {
+        font-size: 5rem;
+        min-height: 6rem;
+    }
+}
