@@ -50,6 +50,7 @@ export default function Home() {
           <Link href="#menu">Menu</Link>
           <Link href="#welcome">Welcome</Link>
           <Link href="#contact">Contact</Link>
+          <Link href="/display">叫號系統</Link>
         </nav>
       </header>
       <section className={styles.intro} id="intro">

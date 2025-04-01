@@ -15,12 +15,11 @@ export default function NumberCallingPage() {
     const [queue, setQueue] = useState<number[]>([]);
     const [queueLength, setQueueLength] = useState<number>(0);
     const [error, setError] = useState<string | null>(null);
-    const [loading, setLoading] = useState<boolean>(true);
     const [connectionStatus, setConnectionStatus] = useState<'connected' | 'disconnected'>('disconnected');
 
     // Fetch current number, queue, and queue length
     const fetchData = async () => {
-        setLoading(true);
+
 
         try {
             // Try to get current number
@@ -51,8 +50,6 @@ export default function NumberCallingPage() {
             setConnectionStatus('disconnected');
             console.error("API connection error:", err);
             setError("無法連接到服務器，請確保API服務正在運行並且可訪問");
-        } finally {
-            setLoading(false);
         }
     };
 
@@ -82,6 +79,17 @@ export default function NumberCallingPage() {
         }
     };
 
+    //Reset
+    const handleReset = async () => {
+        try {
+            await request.post("/reset");
+            fetchData();
+        } catch (err) {
+            console.error("Reset error:", err);
+            setError("重置失敗")
+        }
+    }
+
     // Fetch data initially and set up interval to refresh
     useEffect(() => {
         fetchData();
@@ -98,7 +106,7 @@ export default function NumberCallingPage() {
             <h1 className={styles.title}>叫號系統</h1>
 
             <div className={`${styles.statusIndicator} ${connectionStatus === 'connected' ? styles.connected : styles.disconnected}`}>
-                {connectionStatus === 'connected' ? '已連接到服務器' : '未連接到服務器'}
+                {connectionStatus === 'connected' ? '已連接到伺服器' : '未連接到伺服器'}
             </div>
 
             {error && <div className={styles.error}>{error}</div>}
@@ -106,9 +114,7 @@ export default function NumberCallingPage() {
             <div className={styles.currentNumberContainer}>
                 <h2 className={styles.sectionTitle}>目前叫號</h2>
                 <div className={styles.currentNumberDisplay}>
-                    {loading ? (
-                        <span className={styles.loading}>載入中...</span>
-                    ) : (
+                    {(
                         currentNumber !== null ? currentNumber : "無"
                     )}
                 </div>
@@ -117,9 +123,7 @@ export default function NumberCallingPage() {
             <div className={styles.queueInfoContainer}>
                 <h2 className={styles.sectionTitle}>隊列資訊</h2>
                 <div className={styles.queueInfo}>
-                    {loading ? (
-                        <p className={styles.loading}>載入中...</p>
-                    ) : (
+                    {(
                         <>
                             <p>目前隊列中共有: <span className={styles.count}>{queueLength}</span> 位</p>
                             <p>等待號碼: {queue.length > 0 ? queue.join(", ") : "無"}</p>
@@ -151,6 +155,13 @@ export default function NumberCallingPage() {
                     disabled={connectionStatus === 'disconnected'}
                 >
                     加入新號碼
+                </button>
+                <button
+                    onClick={handleReset}
+                    className={styles.resetButton}
+                    disabled={connectionStatus === 'disconnected'}
+                >
+                    重置
                 </button>
             </div>
         </div>
