@@ -10,6 +10,8 @@ const request = axios.create({ baseURL: API_URL });
 export default function DisplayPage() {
     const [currentNumber, setCurrentNumber] = useState<number | null>(null);
     const [error, setError] = useState<string | null>(null);
+    const [userNumber, setUsersNumber] = useState<string | null>(null);
+    const [numberError, setNumberError] = useState<string | null>(null);
 
     // Fetch current number
     const fetchCurrentNumber = async () => {
@@ -26,9 +28,26 @@ export default function DisplayPage() {
         }
     };
 
+    const getUsersNumber = () => {
+        try {
+            const url = window.location.search.substring(1);
+            const urlVars = url.split('&');
+            for (let i = 0; i < urlVars.length; i++) {
+                const parameter = urlVars[i].split('=');
+                if (parameter[0] === 'number') {
+                    setUsersNumber(parameter[1]);
+                    setNumberError(null);
+                }
+            }
+        } catch {
+            setNumberError("未提供有效號碼");
+        }
+    }
+
     // Fetch data initially and set up interval to refresh
     useEffect(() => {
         fetchCurrentNumber();
+        getUsersNumber();
 
         // Set up interval to refresh data every 3 seconds
         const intervalId = setInterval(fetchCurrentNumber, 3000);
@@ -47,6 +66,18 @@ export default function DisplayPage() {
                 ) : (
                     <div className={styles.numberDisplay}>
                         {currentNumber !== null ? currentNumber : "等待中"}
+                    </div>
+                )}
+            </div>
+
+            <div className={styles.displayBox}>
+                <h1 className={styles.displayTitle}>您的號碼</h1>
+
+                {numberError ? (
+                    <div className={styles.error}>{numberError}</div>
+                ) : (
+                    <div className={styles.userNumberDisplay}>
+                        {userNumber}
                     </div>
                 )}
             </div>
