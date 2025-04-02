@@ -7,7 +7,12 @@ import styles from "./styles.module.css";
 const API_URL = 'https://my-call-queue-worker.timothytseng508.workers.dev';
 const request = axios.create({
     baseURL: API_URL,
-    timeout: 5000 // Add timeout to prevent long waiting
+    timeout: 5000, // Add timeout to prevent long waiting
+    headers: {
+        'Cache-Control': 'no-cache, no-store, must-revalidate',
+        'Pragma': 'no-cache',
+        'Expires': '0',
+    },
 });
 
 export default function NumberCallingPage() {
