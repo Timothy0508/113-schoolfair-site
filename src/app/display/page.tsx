@@ -9,7 +9,7 @@ const request = axios.create({
     baseURL: API_URL,
     timeout: 3000,
     headers: {
-        "Cache-Control": "no-cache, no-store, must-revalidate",
+        "Cache-Control": "no-cache, no-store, must-revalidate, max-age=0",
         'Pragma': 'no-cache',
         'Expires': '0',
     },
@@ -21,8 +21,9 @@ export default function DisplayPage() {
 
     // Fetch current number
     const fetchCurrentNumber = async () => {
+        const timestamp = Date.now();
         try {
-            const response = await request.get("/current");
+            const response = await request.get(`/current?_=${timestamp}`);
             setCurrentNumber(response.data.current_number);
             setError(null);
             console.log(response.data.current_number)
