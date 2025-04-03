@@ -6,15 +6,17 @@ import styles from "./styles.module.css";
 
 const API_URL = 'https://my-call-queue-worker.timothytseng508.workers.dev';
 const request = axios.create({
-    baseURL: API_URL, headers: {
-        "Cache-Control": "no-cache",
+    baseURL: API_URL,
+    timeout: 3000,
+    headers: {
+        "Cache-Control": "no-cache, no-store, must-revalidate",
         'Pragma': 'no-cache',
         'Expires': '0',
     },
 });
 
 export default function DisplayPage() {
-    const [currentNumber, setCurrentNumber] = useState<number | null>(null);
+    const [currentNumber, setCurrentNumber] = useState<string | null>(null);
     const [error, setError] = useState<string | null>(null);
 
     // Fetch current number
@@ -38,7 +40,7 @@ export default function DisplayPage() {
         fetchCurrentNumber();
 
         // Set up interval to refresh data every 3 seconds
-        const intervalId = setInterval(fetchCurrentNumber, 3000);
+        const intervalId = setInterval(fetchCurrentNumber, 6000);
 
         // Clean up interval when component unmounts
         return () => clearInterval(intervalId);
