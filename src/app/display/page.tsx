@@ -6,7 +6,7 @@ import styles from "./styles.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRotateRight } from "@fortawesome/free-solid-svg-icons";
 
-const API_URL = 'https://my-call-queue-worker.timothytseng508.workers.dev';
+const API_URL = 'https://34.74.40.210:8000';
 const request = axios.create({
     baseURL: API_URL,
     timeout: 3000,
