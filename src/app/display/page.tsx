@@ -3,6 +3,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "./styles.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRotateRight } from "@fortawesome/free-solid-svg-icons";
 
 const API_URL = 'https://my-call-queue-worker.timothytseng508.workers.dev';
 const request = axios.create({
@@ -59,6 +61,11 @@ export default function DisplayPage() {
                         {currentNumber !== null ? currentNumber : "等待中"}
                     </div>
                 )}
+            </div>
+            <div className={styles.buttonBox}>
+                <button className={styles.reloadButton} onClick={fetchCurrentNumber}>
+                    <FontAwesomeIcon icon={faRotateRight}></FontAwesomeIcon>
+                </button>
             </div>
 
             <div className={styles.footer}>
