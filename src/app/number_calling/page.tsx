@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "./styles.module.css";
 
-const API_URL = 'https://34.74.40.210:8000';
+const API_URL = 'http://34.74.40.210:8000';
 const request = axios.create({
     baseURL: API_URL,
     timeout: 5000, // Add timeout to prevent long waiting
