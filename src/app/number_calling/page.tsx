@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "./styles.module.css";
 
-const API_URL = 'guided-glider-modest.ngrok-free.app';
+const API_URL = 'https://ncapi.dns-dynamic.net';
 const request = axios.create({
     baseURL: API_URL,
     timeout: 5000, // Add timeout to prevent long waiting

@@ -6,7 +6,7 @@ import styles from "./styles.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRotateRight } from "@fortawesome/free-solid-svg-icons";
 
-const API_URL = 'guided-glider-modest.ngrok-free.app';
+const API_URL = 'https://ncapi.dns-dynamic.net'; // Replace with your API URL
 const request = axios.create({
     baseURL: API_URL,
     timeout: 3000,
