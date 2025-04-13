@@ -4,20 +4,29 @@ import React from "react"
 import Image from "next/image";
 import styles from "./styles.module.css";
 import Link from "next/link";
+import axios from "axios";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { faInstagram, faThreads } from "@fortawesome/free-brands-svg-icons";
 import { useEffect } from "react";
 
-function MenuItem({ title, description, price }: { title: string; description: string; price: number }) {
-  return (
-    <div className={styles.menuItem}>
-      <h3 className={styles.menuItemTitle}>{title}</h3>
-      <p className={styles.menuItemDescription}>{description}</p>
-      <p className={styles.menuItemPrice}>${price}</p>
-    </div>
-  );
-}
+const API_URL = 'https://ncapi.dns-dynamic.net';
+const request = axios.create({
+  baseURL: API_URL,
+});
+const fetchData = async () => {
+  try {
+    //Try to get menu by calling "/get-menu" endpoint
+    const response = await request.get("/get-menu");
+    return response.data;
+  } catch (err) {
+    if (axios.isAxiosError(err) && err.response?.status === 404) {
+      // Not an error, just no menu
+      return null;
+    }
+    throw err; // Re-throw for the outer catch to handle
+  }
+};
 
 export default function Home() {
   useEffect(() => {
@@ -32,6 +41,27 @@ export default function Home() {
     };
 
     window.addEventListener('scroll', scrollHandler);
+
+    const menuItems = document.getElementById('menuItems') as HTMLElement | null;
+    if (!menuItems) return; // Safety check
+    const menuConfig = fetchData();
+    menuConfig.then((data) => {
+      if (data) {
+        data.forEach((item: { id: number; name: string; description: string; price: number }) => {
+          const menuItem = document.createElement('div');
+          menuItem.className = styles.menuItem;
+          menuItem.innerHTML = `
+            <div className=${styles.menuItem}>
+              <h3 className=${styles.menuItemTitle}>${item.name}</h3>
+              <p className={styles.menuItemDescription}>${item.description}</p>
+              <p className=${styles.menuItemPrice}>${item.price}</p>
+            </div>
+          `;
+          menuItems.appendChild(menuItem);
+        });
+      }
+    })
+
 
     // Clean up event listener
     return () => {
@@ -94,28 +124,7 @@ export default function Home() {
       </section>
       <section className={styles.menu} id="menu">
         <h2 className={styles.menuTitle}>Our Menu</h2>
-        <div className={styles.menuItems}>
-          <MenuItem
-            title="飲料"
-            description="Juicy grilled chicken served with a side of vegetables."
-            price={10}
-          />
-          <MenuItem
-            title="冰品"
-            description="Fresh salad made with seasonal vegetables."
-            price={20}
-          />
-          <MenuItem
-            title="炒泡麵"
-            description="Delicious chocolate cake topped with whipped cream."
-            price={30}
-          />
-          <MenuItem
-            title="脆薯"
-            description="Franch Fries"
-            price={40}
-          />
-        </div>
+        <div className={styles.menuItems} id="menuItems"></div>
       </section>
       <section className={styles.welcome} id="welcome">
         <Image
