@@ -140,7 +140,7 @@ export default function NumberCallingPage() {
             <div className={styles.troubleshooting}>
                 <h3>連接問題？</h3>
                 <ul>
-                    <li>確保API服務正在運行 (http://127.0.0.1:7000)</li>
+                    <li>確保API服務正在運行</li>
                     <li>檢查API服務是否已啟用CORS</li>
                     <li>嘗試刷新頁面或重啟服務</li>
                 </ul>
