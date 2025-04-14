@@ -2,7 +2,7 @@
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styles from "./styles.module.css";
-import React from "react";
+import React, { JSX, useEffect, useState } from "react";
 import axios from "axios";
 import { faArrowRight, faCartShopping, faXmark } from "@fortawesome/free-solid-svg-icons";
 
@@ -25,6 +25,26 @@ const fetchData = async () => {
 };
 
 export default function ShoppingPage() {
+    const [menuItems, setMenuItems] = useState<JSX.Element[] | null>(null);
+    useEffect(() => {
+        const menuList = fetchData();
+        menuList.then((data) => {
+            setMenuItems(
+                data.map((item: { id: number; name: string; description: string; price: number }) => {
+                    return (
+                        <div key={item.id} className={styles.menuItem}>
+                            <h3 className={styles.menuItemTitle}>{item.name}</h3>
+                            <p className={styles.menuItemDescription}>{item.description}</p>
+                            <p className={styles.menuItemPrice}>${item.price.toFixed(2)}</p>
+                            <button className={styles.menuItemActionButton}>
+                                <FontAwesomeIcon icon={faArrowRight} className={styles.buttonIcon} />
+                            </button>
+                        </div>
+                    );
+                })
+            )
+        })
+    })
     return (
         <>
             <header className={styles.header}>
@@ -35,7 +55,7 @@ export default function ShoppingPage() {
                     </button>
                 </p>
             </header>
-            <section className={styles.menuItems} id="menuItems"></section>
+            <section className={styles.menuItems} id="menuItems">{menuItems}</section>
             <section className={styles.menuActions}>
                 <button className={styles.menuActionButton}>
                     Clear cart
