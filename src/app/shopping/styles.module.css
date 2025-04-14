@@ -56,3 +56,62 @@
     flex-direction: column;
     padding: 1rem;
 }
+
+.menuItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    padding: 1rem;
+    border: 2px solid;
+    border-radius: 10px;
+    transition-duration: 0.4s;
+}
+
+.menuItem:hover {
+    box-shadow: 0 4px 8px rgb(0, 143, 22);
+    transform: scale(1.02);
+}
+
+.menuItems {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    /* Responsive grid */
+    gap: 20px;
+    padding: 20px;
+    width: 100%;
+}
+
+.menuItemActions {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: row;
+    padding: 1rem;
+    height: 50px;
+}
+
+.menuItemQuantity {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    height: 50px;
+}
+
+.menuItemActionButton {
+    background-color: transparent;
+    height: 50px;
+    width: 50px;
+    cursor: pointer;
+    align-items: center;
+    align-content: center;
+    transition-duration: 0.4s;
+    border-radius: 25px;
+    justify-content: center;
+}
+
+.menuItemActionButton:hover {
+    background-color: green;
+    border-color: green;
+}

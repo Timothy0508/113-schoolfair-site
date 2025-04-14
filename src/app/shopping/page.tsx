@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styles from "./styles.module.css";
 import React, { JSX, useEffect, useState } from "react";
 import axios from "axios";
-import { faArrowRight, faCartShopping, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRight, faCartShopping, faMinus, faPlus, faXmark } from "@fortawesome/free-solid-svg-icons";
 
 const API_URL = 'https://ncapi.dns-dynamic.net';
 const request = axios.create({
@@ -33,12 +33,20 @@ export default function ShoppingPage() {
                 data.map((item: { id: number; name: string; description: string; price: number }) => {
                     return (
                         <div key={item.id} className={styles.menuItem}>
-                            <h3 className={styles.menuItemTitle}>{item.name}</h3>
-                            <p className={styles.menuItemDescription}>{item.description}</p>
-                            <p className={styles.menuItemPrice}>${item.price.toFixed(2)}</p>
-                            <button className={styles.menuItemActionButton}>
-                                <FontAwesomeIcon icon={faArrowRight} className={styles.buttonIcon} />
-                            </button>
+                            <div className={styles.menuItemDetails}>
+                                <h2 className={styles.menuItemTitle}>{item.name}</h2>
+                                <p className={styles.menuItemDescription}>{item.description}</p>
+                                <p className={styles.menuItemPrice}>${item.price.toFixed(2)}</p>
+                            </div>
+                            <div className={styles.menuItemActions}>
+                                <button className={styles.menuItemActionButton}>
+                                    <FontAwesomeIcon icon={faPlus} className={styles.buttonIcon} />
+                                </button>
+                                <p className={styles.menuItemQuantity}>0</p>
+                                <button className={styles.menuItemActionButton}>
+                                    <FontAwesomeIcon icon={faMinus} className={styles.buttonIcon} />
+                                </button>
+                            </div>
                         </div>
                     );
                 })
