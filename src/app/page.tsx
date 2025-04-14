@@ -142,18 +142,18 @@ export default function Home() {
       <section className={styles.contact} id="contact">
         <h2 className={styles.contactTitle}>聯絡我們</h2>
         <div className={styles.contactInfo}>
-          <a href='https://www.instagram.com/tcfsh113_13/' className={styles.contactItem}>
+          <Link href='https://www.instagram.com/tcfsh113_13/' className={styles.contactItem}>
             <button className={styles.contactButton}>
               <FontAwesomeIcon icon={faInstagram} fixedWidth className={styles.contactIcon} />
               <span className={styles.contactText}>@tcfsh113_13</span>
             </button>
-          </a>
-          <a href="https://www.threads.net/@tcfsh113_13" className={styles.contactItem}>
+          </Link>
+          <Link href="https://www.threads.net/@tcfsh113_13" className={styles.contactItem}>
             <button className={styles.contactButtonTreads}>
               <FontAwesomeIcon icon={faThreads} fixedWidth className={styles.contactIcon} />
               <span className={styles.contactText}>@tcfsh113_13</span>
             </button>
-          </a>
+          </Link>
         </div>
       </section>
       <footer className={styles.footer}>
