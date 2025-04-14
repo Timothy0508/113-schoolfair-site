@@ -1,37 +1,38 @@
 'use client'
 
-import React from "react"
-import Image from "next/image";
+import React, { JSX, useEffect } from "react";
+import Image from 'next/image';
 import styles from "./styles.module.css";
-import Link from "next/link";
-import axios from "axios";
+import Link from 'next/link';
+import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { faInstagram, faThreads } from "@fortawesome/free-brands-svg-icons";
-import { useEffect } from "react";
 
 const API_URL = 'https://ncapi.dns-dynamic.net';
 const request = axios.create({
   baseURL: API_URL,
 });
+
 const fetchData = async () => {
   try {
-    //Try to get menu by calling "/get-menu" endpoint
+    // 嘗試呼叫 "/get-menu" 端點來獲取菜單
     const response = await request.get("/get-menu");
     return response.data;
   } catch (err) {
     if (axios.isAxiosError(err) && err.response?.status === 404) {
-      // Not an error, just no menu
+      // 這不是錯誤，只是沒有菜單
       return null;
     }
-    throw err; // Re-throw for the outer catch to handle
+    throw err; // 重新拋出錯誤，讓外部的 catch 處理
   }
 };
 
 export default function Home() {
+  const [menuItems, setMenuItems] = React.useState<JSX.Element[] | null>(null);
   useEffect(() => {
     const header = document.querySelector(`.${styles.header}`) as HTMLElement | null;
-    if (!header) return; // Safety check
+    if (!header) return; // 安全檢查
     const scrollHandler = () => {
       if (window.scrollY > 50) {
         header.classList.add(styles.scrolled);
@@ -42,28 +43,24 @@ export default function Home() {
 
     window.addEventListener('scroll', scrollHandler);
 
-    const menuItems = document.getElementById('menuItems') as HTMLElement | null;
-    if (!menuItems) return; // Safety check
     const menuConfig = fetchData();
     menuConfig.then((data) => {
-      if (data) {
-        data.forEach((item: { id: number; name: string; description: string; price: number }) => {
-          const menuItem = document.createElement('div');
-          menuItem.className = styles.menuItem;
-          menuItem.innerHTML = `
-            <div className=${styles.menuItem}>
-              <h3 className=${styles.menuItemTitle}>${item.name}</h3>
-              <p className={styles.menuItemDescription}>${item.description}</p>
-              <p className=${styles.menuItemPrice}>${item.price}</p>
+      setMenuItems(
+        data.map((item: { id: number; name: string; description: string; price: number }) => {
+          return (
+            <div key={item.id} className={styles.menuItem}>
+              <div className={styles.menuItemDetails}>
+                <h2 className={styles.menuItemTitle}>{item.name}</h2>
+                <p className={styles.menuItemDescription}>{item.description}</p>
+                <p className={styles.menuItemPrice}>${item.price.toFixed(2)}</p>
+              </div>
             </div>
-          `;
-          menuItems.appendChild(menuItem);
-        });
-      }
+          );
+        })
+      )
     })
 
-
-    // Clean up event listener
+    // 清理事件監聽器
     return () => {
       window.removeEventListener('scroll', scrollHandler);
     };
@@ -76,23 +73,23 @@ export default function Home() {
           113 Stand
         </h1>
         <nav className={styles.actions}>
-          <Link href="#about">About</Link>
-          <Link href="#menu">Menu</Link>
-          <Link href="#welcome">Welcome</Link>
-          <Link href="#contact">Contact</Link>
+          <Link href="#about">關於我們</Link>
+          <Link href="#menu">菜單</Link>
+          <Link href="#welcome">歡迎</Link>
+          <Link href="#contact">聯絡我們</Link>
           <Link href="/display">叫號系統</Link>
         </nav>
       </header>
       <section className={styles.intro} id="intro">
         <div className={styles.introText}>
-          <h2 className={styles.introTitle}>Welcome to 113 Stand</h2>
+          <h2 className={styles.introTitle}>歡迎來到 113 Stand</h2>
           <div className={styles.introDescription}>
-            <p>113 Stand is a place where you can enjoy delicious food and drinks.</p>
-            <p>We offer a wide variety of dishes made with fresh ingredients.</p>
+            <p>113 Stand 是一個您可以享受美味食物和飲品的地方。</p>
+            <p>我們提供各種以新鮮食材製成的菜餚。</p>
           </div>
           <Link href="#menu" className={styles.introLink}>
             <button className={styles.introButton}>
-              View Menu
+              查看菜單
               <FontAwesomeIcon icon={faArrowRight} fixedWidth className={styles.introButtonIcon} />
             </button>
           </Link>
@@ -115,16 +112,16 @@ export default function Home() {
           className={styles.aboutImage}
         />
         <div className={styles.aboutText}>
-          <h2 className={styles.aboutTitle}>About Us</h2>
+          <h2 className={styles.aboutTitle}>關於我們</h2>
           <div className={styles.aboutDescription}>
-            <p>At 113 Stand, we believe in serving quality food that brings people together.</p>
-            <p>Our team is dedicated to providing you with the best dining experience possible.</p>
+            <p>在 113 Stand，我們相信提供優質的食物，將人們聚集在一起。</p>
+            <p>我們的團隊致力於為您提供最好的用餐體驗。</p>
           </div>
         </div>
       </section>
       <section className={styles.menu} id="menu">
-        <h2 className={styles.menuTitle}>Our Menu</h2>
-        <div className={styles.menuItems} id="menuItems"></div>
+        <h2 className={styles.menuTitle}>我們的菜單</h2>
+        <div className={styles.menuItems} id="menuItems">{menuItems}</div>
       </section>
       <section className={styles.welcome} id="welcome">
         <Image
@@ -135,15 +132,15 @@ export default function Home() {
           className={styles.welcomeImage}
         />
         <div className={styles.welcomeText}>
-          <h2 className={styles.welcomeTitle}>Welcome to 113 Stand</h2>
+          <h2 className={styles.welcomeTitle}>歡迎來到 113 Stand</h2>
           <div className={styles.welcomeDescription}>
-            <p>We are excited to have you here!</p>
-            <p>Join us for a meal and experience the best of 113 Stand.</p>
+            <p>我們很高興您來到這裡！</p>
+            <p>加入我們，享用美食，體驗 113 Stand 的精華。</p>
           </div>
         </div>
       </section>
       <section className={styles.contact} id="contact">
-        <h2 className={styles.contactTitle}>Contact Us</h2>
+        <h2 className={styles.contactTitle}>聯絡我們</h2>
         <div className={styles.contactInfo}>
           <a href='https://www.instagram.com/tcfsh113_13/' className={styles.contactItem}>
             <button className={styles.contactButton}>
@@ -161,7 +158,7 @@ export default function Home() {
       </section>
       <footer className={styles.footer}>
         <div className={styles.footerText}>
-          <p>&copy; 2025 113 Stand. All rights reserved.</p>
+          <p>&copy; 2025 113 Stand. 保留所有權利。</p>
         </div>
       </footer>
     </main>
