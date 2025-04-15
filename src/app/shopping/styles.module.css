@@ -4,6 +4,10 @@
     --primary-color: #4CAF50;
     --secondary-color: #f44336;
     --border-radius: 5px;
+    --input-border: #ccc;
+    --error-color: #f44336;
+    --success-color: #4CAF50;
+    --highlight-bg: #e6f7e6;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -12,6 +16,8 @@
         --text-color: #e0e0e0;
         --primary-color: #bb86fc;
         --secondary-color: #cf6679;
+        --input-border: #444;
+        --highlight-bg: #2a2a2a;
     }
 }
 
@@ -60,6 +66,7 @@
     align-items: center;
     flex-direction: row;
     padding: 1rem;
+    margin-bottom: 2rem;
 }
 
 .menuActionButton {
@@ -78,8 +85,8 @@
 }
 
 .menuActionButton:hover:not(:disabled) {
-    background-color: green;
-    border-color: green;
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
     color: white;
 }
 
@@ -94,6 +101,7 @@
     align-items: center;
     flex-direction: column;
     padding: 1rem;
+    margin-top: 2rem;
 }
 
 .menuItem {
@@ -108,7 +116,7 @@
 }
 
 .menuItem:hover {
-    box-shadow: 0 4px 8px rgb(0, 143, 22);
+    box-shadow: 0 4px 8px var(--primary-color);
     transform: scale(1.02);
 }
 
@@ -153,8 +161,9 @@
 }
 
 .menuItemActionButton:hover:not(:disabled) {
-    background-color: green;
-    border-color: green;
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
 }
 
 .menuItemActionButton:disabled {
@@ -214,5 +223,104 @@
 
 .menuItemPrice {
     font-weight: bold;
-    color: green;
+    color: var(--primary-color);
+}
+
+/* Checkout and Order Summary Styles */
+.checkoutContainer {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.orderSummary {
+    background-color: var(--background);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.orderSummary h3 {
+    margin-top: 0;
+    border-bottom: 1px solid var(--input-border);
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.errorMessage {
+    color: var(--error-color);
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid var(--error-color);
+    border-radius: 5px;
+    background-color: rgba(244, 67, 54, 0.1);
+}
+
+.checkoutActions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.submitButton {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.submitButton:hover:not(:disabled) {
+    background-color: var(--primary-color);
+    opacity: 0.9;
+}
+
+.checkoutSuccess {
+    text-align: center;
+    padding: 30px;
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: var(--background);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.checkoutSuccess h2 {
+    color: var(--success-color);
+    margin-bottom: 20px;
+}
+
+.orderDetails {
+    background-color: var(--highlight-bg);
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+    text-align: left;
+}
+
+.orderIdDisplay {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.orderIdDisplay span {
+    font-weight: bold;
+    font-family: monospace;
+    padding: 5px;
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 3px;
+}
+
+.estimatedTime {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+}
+
+.cartCheckoutButton {
+    width: 100%;
+    margin-top: 15px;
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.cartCheckoutButton:hover {
+    opacity: 0.9;
 }
