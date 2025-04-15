@@ -26,6 +26,7 @@ const fetchData = async () => {
 
 export default function ShoppingPage() {
     const [menuItems, setMenuItems] = useState<JSX.Element[] | null>(null);
+
     useEffect(() => {
         const menuList = fetchData();
         menuList.then((data) => {
