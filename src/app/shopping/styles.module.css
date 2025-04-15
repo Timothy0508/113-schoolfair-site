@@ -1,3 +1,20 @@
+:root {
+    --background: #f0f0f0;
+    --text-color: #333;
+    --primary-color: #4CAF50;
+    --secondary-color: #f44336;
+    --border-radius: 5px;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background: #121212;
+        --text-color: #e0e0e0;
+        --primary-color: #bb86fc;
+        --secondary-color: #cf6679;
+    }
+}
+
 .header {
     display: flex;
     justify-content: space-between;
@@ -19,6 +36,22 @@
 .button {
     border: none;
     cursor: pointer;
+    position: relative;
+}
+
+.cartCount {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
 }
 
 .menuActions {
@@ -44,9 +77,15 @@
     transition-duration: 0.4s;
 }
 
-.menuActionButton:hover {
+.menuActionButton:hover:not(:disabled) {
     background-color: green;
     border-color: green;
+    color: white;
+}
+
+.menuActionButton:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
 .footer {
@@ -109,9 +148,71 @@
     transition-duration: 0.4s;
     border-radius: 25px;
     justify-content: center;
+    display: flex;
+    border: 1px solid;
 }
 
-.menuItemActionButton:hover {
+.menuItemActionButton:hover:not(:disabled) {
     background-color: green;
     border-color: green;
+}
+
+.menuItemActionButton:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.cartModal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 300px;
+    background-color: var(--background);
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.cartContent {
+    position: relative;
+    padding: 20px 0;
+}
+
+.closeCartButton {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.cartItem {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid;
+}
+
+.cartTotal {
+    margin-top: 20px;
+    text-align: right;
+    font-size: 1.2rem;
+}
+
+.menuItemTitle {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.menuItemDescription {
+    margin-bottom: 10px;
+}
+
+.menuItemPrice {
+    font-weight: bold;
+    color: green;
 }
