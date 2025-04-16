@@ -70,7 +70,7 @@ export default function Home() {
     <main className={styles.main}>
       <header className={styles.header}>
         <h1 className={styles.title}>
-          113 Stand
+          I Want to &quot;Eat&quot; That Way
         </h1>
         <nav className={styles.actions}>
           <Link href="#about">關於我們</Link>
@@ -82,9 +82,9 @@ export default function Home() {
       </header>
       <section className={styles.intro} id="intro">
         <div className={styles.introText}>
-          <h2 className={styles.introTitle}>歡迎來到 113 Stand</h2>
+          <h2 className={styles.introTitle}>歡迎來到 I Want to &quot;Eat&quot; That Way</h2>
           <div className={styles.introDescription}>
-            <p>113 Stand 是一個您可以享受美味食物和飲品的地方。</p>
+            <p>I Want to &quot;Eat&quot; That Way 是一個您可以享受美味食物和飲品的地方。</p>
             <p>我們提供各種以新鮮食材製成的菜餚。</p>
           </div>
           <Link href="#menu" className={styles.introLink}>
@@ -96,7 +96,7 @@ export default function Home() {
         </div>
         <Image
           src='/images/welcome.svg'
-          alt="Welcome to 113 Stand"
+          alt="Welcome to I Want to &quot;Eat&quot; That Way"
           width={500}
           height={100}
           className={styles.introImage}
@@ -106,7 +106,7 @@ export default function Home() {
       <section className={styles.about} id="about">
         <Image
           src='/images/about.png'
-          alt="About 113 Stand"
+          alt="About I Want to &quot;Eat&quot; That Way"
           width={500}
           height={100}
           className={styles.aboutImage}
@@ -114,7 +114,7 @@ export default function Home() {
         <div className={styles.aboutText}>
           <h2 className={styles.aboutTitle}>關於我們</h2>
           <div className={styles.aboutDescription}>
-            <p>在 113 Stand，我們相信提供優質的食物，將人們聚集在一起。</p>
+            <p>在 I Want to &quot;Eat&quot; That Way，我們相信提供優質的食物，將人們聚集在一起。</p>
             <p>我們的團隊致力於為您提供最好的用餐體驗。</p>
           </div>
         </div>
@@ -126,16 +126,16 @@ export default function Home() {
       <section className={styles.welcome} id="welcome">
         <Image
           src='/images/welcome.png'
-          alt="Welcome to 113 Stand"
+          alt="Welcome to I Want to &quot;Eat&quot; That Way"
           width={500}
           height={100}
           className={styles.welcomeImage}
         />
         <div className={styles.welcomeText}>
-          <h2 className={styles.welcomeTitle}>歡迎來到 113 Stand</h2>
+          <h2 className={styles.welcomeTitle}>歡迎來到 I Want to &quot;Eat&quot; That Way</h2>
           <div className={styles.welcomeDescription}>
             <p>我們很高興您來到這裡！</p>
-            <p>加入我們，享用美食，體驗 113 Stand 的精華。</p>
+            <p>加入我們，享用美食，體驗 I Want to &quot;Eat&quot; That Way 的精華。</p>
           </div>
         </div>
       </section>
@@ -158,7 +158,7 @@ export default function Home() {
       </section>
       <footer className={styles.footer}>
         <div className={styles.footerText}>
-          <p>&copy; 2025 113 Stand. All rights reserved.</p>
+          <p>&copy; 2025 I Want to &quot;Eat&quot; That Way. All rights reserved.</p>
         </div>
       </footer>
     </main>

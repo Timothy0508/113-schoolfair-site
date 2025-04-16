@@ -70,7 +70,7 @@ export default function DisplayPage() {
             </div>
 
             <div className={styles.footer}>
-                <p>113 Stand 叫號系統</p>
+                <p>I Want to &quot;Eat&quot; That Way 叫號系統</p>
             </div>
         </div>
     );

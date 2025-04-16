@@ -273,7 +273,7 @@ export default function ShoppingPage() {
     return (
         <>
             <header className={styles.header}>
-                <h1 className={styles.title}>113 Stand Pre-order</h1>
+                <h1 className={styles.title}>I Want to &quot;Eat&quot; That Way Pre-order</h1>
                 {!isCheckingOut && (
                     <p className={styles.actions}>
                         <button className={styles.button} onClick={() => setIsCartOpen(!isCartOpen)}>
@@ -350,7 +350,7 @@ export default function ShoppingPage() {
                 </div>
             )}
             <footer className={styles.footer}>
-                <p className={styles.footerText}>© 2023 113 Stand</p>
+                <p className={styles.footerText}>© 2023 I Want to &quot;Eat&quot; That Way</p>
             </footer>
         </>
     );
