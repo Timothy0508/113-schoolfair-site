@@ -123,6 +123,10 @@ export default function Home() {
         <h2 className={styles.menuTitle}>我們的菜單</h2>
         <div className={styles.menuItems} id="menuItems">{menuItems}</div>
       </section>
+      <section className={styles.promotion} id="promotion">
+        <div className={styles.promotionBody}>
+        </div>
+      </section>
       <section className={styles.welcome} id="welcome">
         <Image
           src='/images/welcome.png'
