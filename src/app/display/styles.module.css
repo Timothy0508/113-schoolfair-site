@@ -6,6 +6,30 @@
     min-height: 100vh;
     padding: 1rem;
     background-color: var(--background);
+    padding-top: 0px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    width: 100%;
+    border-radius: 0.5rem;
+}
+
+.backButton {
+    background-color: var(--foreground);
+    color: var(--background);
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition-duration: 0.4s;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
 }
 
 .displayBox {

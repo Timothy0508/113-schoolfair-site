@@ -1,10 +1,11 @@
 'use client'
 
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import axios from "axios";
 import styles from "./styles.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faRotateRight } from "@fortawesome/free-solid-svg-icons";
+import { faHome, faRotateRight } from "@fortawesome/free-solid-svg-icons";
 
 const API_URL = 'https://ncapi.dns-dynamic.net'; // Replace with your API URL
 const request = axios.create({
@@ -21,6 +22,7 @@ const request = axios.create({
 export default function DisplayPage() {
     const [currentNumber, setCurrentNumber] = useState<string | null>(null);
     const [error, setError] = useState<string | null>(null);
+    const router = useRouter();
 
     // Fetch current number
     const fetchCurrentNumber = async () => {
@@ -52,6 +54,12 @@ export default function DisplayPage() {
 
     return (
         <div className={styles.container}>
+            <header className={styles.header}>
+                <button className={styles.backButton} onClick={() => router.push('/')}>
+                    <FontAwesomeIcon icon={faHome} className={styles.backIcon} />
+                    Go back to home
+                </button>
+            </header>
             <div className={styles.displayBox}>
                 <h1 className={styles.displayTitle}>目前叫號</h1>
 
