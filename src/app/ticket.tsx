@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './styles.module.css'; // 導入 CSS 模組
+import Image from 'next/image'; // 導入 Next.js 的 Image 組件
 
 interface TicketProps {
   title: string;
@@ -26,7 +27,7 @@ const Ticket: React.FC<TicketProps> = ({
     <div className={styles.ticketContainer}> {/* 使用 styles 物件中的類別名稱 */}
       {imageUrl && (
         <div className={styles.imageContainer}>
-          <img src={imageUrl} alt={title} className={styles.ticketImage} />
+          <Image src={imageUrl} alt={title} className={styles.ticketImage} />
         </div>
       )}
       <div className={styles.contentContainer}>

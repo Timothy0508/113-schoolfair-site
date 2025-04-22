@@ -346,11 +346,9 @@
 .ticketTitle {
   font-size: 1.5rem;
   margin-bottom: 8px;
-  color: #333;
 }
 
 .ticketDescription {
-  color: #666;
   margin-bottom: 12px;
   font-size: 0.9rem;
 }
