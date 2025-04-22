@@ -46,7 +46,7 @@ export default function DisplayPage() {
         fetchCurrentNumber();
 
         // Set up interval to refresh data every 3 seconds
-        const intervalId = setInterval(fetchCurrentNumber, 6000);
+        const intervalId = setInterval(fetchCurrentNumber, 3000);
 
         // Clean up interval when component unmounts
         return () => clearInterval(intervalId);
